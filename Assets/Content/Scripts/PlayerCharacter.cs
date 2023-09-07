@@ -24,6 +24,13 @@ namespace Scripts
             }
         }
 
+        public void Setup(PlayerData data)
+        {
+            transform.position = data.position;
+            _pov.m_VerticalAxis.Value = data.rotation.x;
+            _pov.m_HorizontalAxis.Value = data.rotation.y;
+        }
+
         private void Awake()
         {
             _pov = virtualCamera.GetCinemachineComponent<CinemachinePOV>();

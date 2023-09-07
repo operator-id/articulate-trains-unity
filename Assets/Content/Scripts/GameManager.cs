@@ -21,6 +21,8 @@ namespace Scripts
         {
             _items = FindObjectsOfType<InteractableItem>(true).ToList();
             _character = FindObjectOfType<PlayerCharacter>(true);
+            var data = PlayerDataManager.Load();
+            _character.Setup(data);
         }
 
         private void OnDisable()
@@ -39,6 +41,7 @@ namespace Scripts
 
         private void StartLearningNugget(ItemData data)
         {
+            PlayerDataManager.Save(_character.transform.position, _character.transform.eulerAngles);
             ArticulateBridge.ShowItemNugget(data.Id);
         }
 
